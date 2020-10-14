@@ -1,28 +1,30 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "ac_shop",
+    "description": "Acgice商城",
+    "keywords": [
+        "ac_shop acshop Acgice 商城"
+    ],
+    "homepage": "https://oauth.acgice.com",
     "type": "project",
     "keywords": [
         "framework",
         "thinkphp",
         "ORM"
     ],
-    "homepage": "http://thinkphp.cn/",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
-        },
-        {
-            "name": "yunwuxin",
-            "email": "448901948@qq.com"
-        }        
+            "name": "Orzice",
+            "email": "1073519986@qq.com"
+        }       
     ],
     "require": {
         "php": ">=7.1.0",
         "topthink/framework": "^6.0.0",
-        "topthink/think-orm": "^2.0"
+        "topthink/think-orm": "^2.0",
+        "topthink/think-multi-app": "^1.0",
+        "topthink/think-helper": "^3.1",
+        "topthink/think-captcha": "^3.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
@@ -30,7 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "app\\": "app"
+            "app\\": "app",
+            "AcShop\\plugin\\": "plugin/"
         },
         "psr-0": {
             "": "extend/"

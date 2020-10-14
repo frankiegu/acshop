@@ -1,0 +1,10 @@
+{
+  "name": "team-dividend",
+  "version": "1.0.201",
+  "title": "经销商管理",
+  "description": "经销商管理",
+  "author": "",
+  "url": "",
+  "namespace": "Yunshop\\TeamDividend",
+  "config": "config.tpl"
+}
