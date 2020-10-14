@@ -10,28 +10,32 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-14 11:23:51
+// | DateTime：2020-10-14 17:03:43
 // +----------------------------------------------------------------------
-namespace AcShop\plugin\a\src\index;
 
+namespace app\admin\controller;
 
-use app\common\controller\ApiController;
+use app\common\controller\AdminController;
+use think\facade\Config;
 use app\common\Plugins;
 
-/**
-* 
-*/
-class Index extends ApiController
+
+class Index extends AdminController
 {
-	
-	public function index()
-	{
+    public function index()
+     {
+        // 触发UserLogin事件 用于执行用户登录后的一系列操作
+       
+        event('UserLogin');
+
+        // 获取插件配置
+        //$plugin = new Plugins::GetPluginList();
         print_r("=============<br>");
         print_r("插件列表<br>");
         print_r("=============<br>");
         print_r(Plugins::GetPluginList());
-		return 111;
-	}
+        //print_r(Config::get('plugins_menu'));
 
-
+        return "-结束";
+    }
 }

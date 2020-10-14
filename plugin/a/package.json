@@ -1,9 +1,0 @@
-{
-  "name": "a",
-  "version": "1.0.0",
-  "title": "测试插件A",
-  "description": "测试插件A说明",
-  "author": "",
-  "url": "",
-  "namespace": "AcShop\\plugin\\a",
-}

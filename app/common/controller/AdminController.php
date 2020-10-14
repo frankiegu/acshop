@@ -23,7 +23,7 @@ use think\Response;
 
 use app\common\Plugins;
 
-class ApiController extends BaseController
+class AdminController extends BaseController
 {
 
     /**

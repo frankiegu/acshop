@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-14 11:23:57
+// | DateTime：2020-10-14 16:42:54
 // +----------------------------------------------------------------------
 
 use think\facade\Config;
@@ -20,22 +20,18 @@ return function () {
    print_r("插件A启动<br>");
 	// 设置插件
 	Config::set(['a' => [
-        'name' => '线下自提点模块',
-        'type' => 'marketing',
-        'url' => 'plugin.orz-maps.admin.set.lists',// url 可以填写http 也可以直接写路由
-        'url_params' => '',//如果是url填写的是路由则启用参数否则不启用
+        'name' => '插件A模块',
+        'version' => '1.0.0',
+        'description' => '测试插件A说明',
+        'author' => '',
+        'url' => '',
+        'namespace' => 'AcShop\\plugin\\a',
         'permit' => 1,//如果不设置则不会做权限检测
         'menu' => 1,//如果不设置则不显示菜单，子菜单也将不显示
-        'icon' => 'fa-calendar',//菜单图标
-        'list_icon' => 'orz-maps',
         'parents' => [],
-        'top_show' => 0,
-        'left_first_show' => 0,
-        'left_second_show' => 1
         ]], 'plugins_menu');
 
 	// 监听事件
 	Event::subscribe(AcShop\plugin\a\listener\index::class);
 	
-
 };

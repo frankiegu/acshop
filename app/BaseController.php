@@ -7,6 +7,7 @@ use think\App;
 use think\exception\ValidateException;
 use think\Validate;
 
+use app\common\Plugins;
 /**
  * 控制器基础类
  */
@@ -48,6 +49,8 @@ abstract class BaseController
 
         // 控制器初始化
         $this->initialize();
+        // 插件系统初始化
+        Plugins::init();
     }
 
     // 初始化
