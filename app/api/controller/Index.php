@@ -17,6 +17,8 @@ namespace app\api\controller;
 use app\BaseController;
 use app\common\controller\ApiController;
 use think\facade\Config;
+use think\facade\Event;
+use app\common\Plugins;
 
 
 class Index extends ApiController
@@ -24,40 +26,17 @@ class Index extends ApiController
     
     public function index()
      {
-    //     //$s = new \AcShop\plugin\a\src\index\index();
-    //     $root = root_path();
-    //     $arr = array();
-    //     $dir = $root.'plugin/';
+        // 触发UserLogin事件 用于执行用户登录后的一系列操作
+       
+        event('UserLogin');
 
-    //     //遍历目录下面的所有文件和目录，2019年2月15日
-    //     $str = opendir($dir);//指定获取此目录下的文件及文件夹列表
-    //     while( ($filename = readdir($str)) !== false ) 
-    //     {
-    //         if($filename != "." && $filename != "..")
-    //         {
-    //             //判断是否是文件，文件放在文件列表数组中，子文件夹放在子文件夹列表数组中
-    //             if (is_file($filename)){
-    //                 $file_array[]=$filename;
-    //             }else{
-    //                 $dir_array[]=$filename;
-    //             }
-    //         }
-    //     }
-    //     closedir($str);
-    //     //以数组形式打印文件夹目录下面的所有文件列表
-    //     //print_r($file_array);
-    //     //以数组形式打印文件夹目录下面的所有子文件夹列表
-    //     print_r($dir_array);
-    //     for ($i=0; $i < count($dir_array); $i++) { 
-    //         # 判断文件是否存在 存在则开始注入依赖
-    //         $file = $dir.$dir_array[$i]."\bootstrap.php";
-    //         if (is_file($file)){
-    //            $hook = include  $file;
-    //            $hook();
-    //         }
-    //     }
-        // 获取配置
-    print_r(Config::get('plugins_menu'));
+        // 获取插件配置
+        //$plugin = new Plugins::GetPluginList();
+        print_r("=============<br>");
+        print_r("插件列表<br>");
+        print_r("=============<br>");
+        print_r(Plugins::GetPluginList());
+        //print_r(Config::get('plugins_menu'));
 
         return "-结束";
     }

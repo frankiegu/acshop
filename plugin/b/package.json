@@ -1,0 +1,9 @@
+{
+  "name": "b",
+  "version": "1.0.0",
+  "title": "测试插件B",
+  "description": "测试插件B说明",
+  "author": "",
+  "url": "",
+  "namespace": "AcShop\\plugin\\b",
+}

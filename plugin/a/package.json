@@ -1,10 +1,9 @@
 {
-  "name": "team-dividend",
-  "version": "1.0.201",
-  "title": "经销商管理",
-  "description": "经销商管理",
+  "name": "a",
+  "version": "1.0.0",
+  "title": "测试插件A",
+  "description": "测试插件A说明",
   "author": "",
   "url": "",
-  "namespace": "Yunshop\\TeamDividend",
-  "config": "config.tpl"
+  "namespace": "AcShop\\plugin\\a",
 }
