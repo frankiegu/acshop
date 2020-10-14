@@ -47,7 +47,7 @@ class Plugins
         for ($i=0; $i < count($dir_array); $i++) { 
             $file = $dir.$dir_array[$i]."\app.php";
             if (is_file($file)){
-               $hook = include  $file;
+               $hook = include $file;
                $hook();
             }
         }
