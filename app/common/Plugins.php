@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | 联系我们: https://oauth.acgice.com/sdk/contact.html
 // +----------------------------------------------------------------------
-// | gitee开源项目：https://gitee.com/orzice/ac-shop
+// | gitee开源项目：https://gitee.com/orzice/acshop
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
@@ -16,6 +16,7 @@
 namespace app\common;
 
 use think\facade\Config;
+use think\facade\Route;
 
 class Plugins 
 {
@@ -51,6 +52,16 @@ class Plugins
                $hook();
             }
         }
+        self::PluginRoute();
+    }
+    /**
+     * 插件路由设置
+     */
+    static public function  PluginRoute()
+    {
+    	// 注册路由到News控制器的read操作
+		//Route::rule('plugin','AcShop\plugin\a\listener\index');
+		
     }
     /**
      * 获取插件列表信息
