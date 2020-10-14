@@ -1,8 +1,15 @@
-AcShop（AcgIce商城）
-===============
+# AcShop（AcgIce商城）
+### 项目开发中
 
-> 【运行环境要求】
->
+[![AcShop](https://img.shields.io/badge/license-AGPL--3.0-blue)](https://oauth.acgice.com)
+[![AcShop](https://img.shields.io/badge/AcShop-开发中-brightgreen)](https://oauth.acgice.com)
+[![star](https://gitee.com/orzice/acshop/badge/star.svg?theme=dark)](https://gitee.com/orzice/acshop/stargazers)
+[![fork](https://gitee.com/orzice/acshop/badge/fork.svg?theme=dark)](https://gitee.com/orzice/acshop/members)
+
+
+
+## [运行环境要求]
+
 > 后端技术栈：PHP7.2 + Redis + Mysql + Nginx 
 >
 > 前端技术栈： Vue.js + uni-app
