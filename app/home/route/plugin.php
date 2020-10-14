@@ -20,9 +20,9 @@ use think\facade\Route;
 
 // 绑定到类
 /**
- * plugin.a-index-index-index
+ * plugin.a-index-index-index    或者 home/ 都可以
  */
-Route::rule('plugin.<p1>-<p2>-<p3>-<p4>','AcShop\plugin\<p1>\src\<p2>\<p3>@<p4>');
+Route::rule('plugin.<p1>-<p2>-<p3>-<p4>','AcShop\plugin\<p1>\api\<p2>\<p3>@<p4>');
 
 // Route::rule('plugin.<p1>-<p2>-<p3>-<p4>', function ($p1,$p2,$p3,$p4) {
 // 	print_r($p1);

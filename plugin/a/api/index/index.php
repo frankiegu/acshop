@@ -10,21 +10,28 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-14 11:24:38
+// | DateTime：2020-10-14 11:23:51
 // +----------------------------------------------------------------------
-
-use think\facade\Config;
-use think\facade\Event;
+namespace AcShop\plugin\a\api\index;
 
 
-return function () {
-   print_r("插件B启动<br>");
-	// 设置插件
-	Config::set(['b' => ''], 'plugins_menu');
+use app\common\controller\ApiController;
+use app\common\Plugins;
 
-	// 监听事件
-	Event::subscribe(AcShop\plugin\b\listener\index::class);
+/**
+* 
+*/
+class Index extends ApiController
+{
 	
+	public function index()
+	{
+        print_r("=============<br>");
+        print_r("插件列表<br>");
+        print_r("=============<br>");
+        print_r(Plugins::GetPluginList());
+		return 111;
+	}
 
 
-};
+}

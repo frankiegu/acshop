@@ -10,26 +10,20 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-14 11:23:51
+// | DateTime：2020-10-14 11:24:27
 // +----------------------------------------------------------------------
-namespace AcShop\plugin\a\src\index;
+namespace AcShop\plugin\b\api\index;
 
 
-use app\common\controller\ApiController;
-use app\common\Plugins;
 
 /**
 * 
 */
-class Index extends ApiController
+class Index 
 {
 	
 	public function index()
 	{
-        print_r("=============<br>");
-        print_r("插件列表<br>");
-        print_r("=============<br>");
-        print_r(Plugins::GetPluginList());
 		return 111;
 	}
 

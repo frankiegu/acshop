@@ -24,9 +24,7 @@ class Index extends HomeController
 {
     public function index()
      {
-        // 触发UserLogin事件 用于执行用户登录后的一系列操作
-       
-        event('UserLogin');
+       event('Home');
 
         // 获取插件配置
         //$plugin = new Plugins::GetPluginList();
