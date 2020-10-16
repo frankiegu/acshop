@@ -18,6 +18,7 @@ namespace app\home\controller;
 use app\common\controller\HomeController;
 use think\facade\Config;
 use app\common\Plugins;
+use EasyAdmin\auth\Node as NodeService;
 
 
 class Index extends HomeController
@@ -25,6 +26,9 @@ class Index extends HomeController
     public function index()
      {
        event('Home');
+       $nodeList = (new NodeService())->getNodelist();
+       print_r($nodeList);
+       exit;
 
         // 获取插件配置
         //$plugin = new Plugins::GetPluginList();

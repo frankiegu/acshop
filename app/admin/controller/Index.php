@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-14 17:03:43
+// | DateTime：2020-10-16 20:00:18
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
@@ -19,9 +19,20 @@ use app\common\controller\AdminController;
 use think\facade\Config;
 use app\common\Plugins;
 
+use EasyAdmin\annotation\ControllerAnnotation;
+use EasyAdmin\annotation\NodeAnotation;
+
+/**
+ * @ControllerAnnotation(title="系统节点管理")
+ * Class Node
+ * @package app\admin\controller\system
+ */
 
 class Index extends AdminController
 {
+    /**
+     * @NodeAnotation(title="首页")
+     */
     public function index()
      {
         // 触发UserLogin事件 用于执行用户登录后的一系列操作

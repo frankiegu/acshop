@@ -23,11 +23,11 @@ return [
             // 服务器地址
             'hostname'        => env('database.hostname', '127.0.0.1'),
             // 数据库名
-            'database'        => env('database.database', ''),
+            'database'        => env('database.database', 'acshop'),
             // 用户名
             'username'        => env('database.username', 'root'),
             // 密码
-            'password'        => env('database.password', ''),
+            'password'        => env('database.password', 'admin'),
             // 端口
             'hostport'        => env('database.hostport', '3306'),
             // 数据库连接参数
@@ -50,7 +50,7 @@ return [
             // 是否需要断线重连
             'break_reconnect' => false,
             // 监听SQL
-            'trigger_sql'     => env('app_debug', true),
+            'trigger_sql'     => env('app_debug', false),
             // 开启字段缓存
             'fields_cache'    => false,
         ],
