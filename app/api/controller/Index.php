@@ -29,7 +29,7 @@ class Index extends ApiController
      {
         // 触发UserLogin事件 用于执行用户登录后的一系列操作
        
-        event('UserLogin');
+        event('UserLogin',"6666");
 
         // 获取插件配置
         //$plugin = new Plugins::GetPluginList();

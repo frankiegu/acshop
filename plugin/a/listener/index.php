@@ -37,7 +37,7 @@ class Index
         public function onUserLogin($user)
         {
             // UserLogin事件响应处理
-            print_r("插件A 响应<br>");
+            print_r("插件A 响应<br>数据:".$user."<br>");
         }
 
 }
