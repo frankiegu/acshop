@@ -19,4 +19,6 @@ return [
     'version'         => '1.0.0',
     // Session配置
     'SessionName'         => 'user',
+    // 密码加密
+    'pwSDK'         => '12333',
 ];

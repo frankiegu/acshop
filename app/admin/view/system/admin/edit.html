@@ -1,0 +1,97 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+<!-- 
+        <div class="layui-form-item">
+            <label class="layui-form-label required">用户头像</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="head_img" class="layui-input layui-col-xs6" lay-verify="required" lay-reqtext="请上传用户头像" placeholder="请上传用户头像" value="{$row.head_img|default=''}">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="head_img" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_head_img" data-upload-select="head_img" data-upload-number="one"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">登录账户</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" class="layui-input" readonly value="{$row.username|default=''}">
+                <tip>填写登录账户。</tip>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">推荐人ID</label>
+            <div class="layui-input-block">
+                <input type="text" name="plus.parent_uid" class="layui-input" lay-reqtext="推荐人ID" placeholder="推荐人ID" value="{$row.plus.parent_uid|default=''}" {if !$exps}disabled{/if}>
+                <tip>不要随意修改</tip>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">积分</label>
+            <div class="layui-input-block">
+                <input type="text" name="credit1" class="layui-input" lay-reqtext="积分" placeholder="积分" value="{$row.credit1}" {if !$exps}disabled{/if}>
+                <tip>不要随意修改</tip>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">余额</label>
+            <div class="layui-input-block">
+                <input type="text" name="credit2" class="layui-input" lay-reqtext="余额" placeholder="余额" value="{$row.credit2}" {if !$exps}disabled{/if}>
+                <tip>不要随意修改</tip>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户手机</label>
+            <div class="layui-input-block">
+                <input type="text" name="plus.mobile" class="layui-input" lay-reqtext="请输入用户手机" placeholder="请输入用户手机" value="{$row.plus.mobile|default=''}">
+                <tip>填写用户手机。</tip>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收货姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="plus.name" class="layui-input" lay-reqtext="收货姓名" placeholder="收货姓名" value="{$row.plus.name|default=''}">
+                <tip></tip>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">运营地址</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" lay-reqtext="运营地址" placeholder="运营地址" value="{$row.plus.province|default=''} {$row.plus.city|default=''} {$row.plus.area|default=''} {$row.plus.address|default=''}" disabled>
+                <tip>禁止修改 需要用户自行修改</tip>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色权限</label>
+            <div class="layui-input-block">
+                {foreach auth_list as $key=>$val}
+                <input type="checkbox" name="auth_ids[{$key}]" lay-skin="primary" title="{$val}" {if in_array($key,$row.auth_ids)}checked="" {/if} {if !$exps}disabled{/if}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注信息</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息">{$row.remark|default=''}</textarea>
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+require(["jquery", "easy-admin"], function ($, ea) {
+      ea.listen();
+});
+</script>

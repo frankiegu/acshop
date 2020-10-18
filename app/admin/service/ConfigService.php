@@ -10,22 +10,22 @@
 // | github开源项目：https://github.com/zhongshaofa/EasyAdmin
 // +----------------------------------------------------------------------
 
-namespace app\admin\model;
+namespace app\admin\service;
 
+use think\facade\Cache;
 
-use app\common\model\TimeModel;
-
-class SystemAdmin extends TimeModel
+class ConfigService
 {
 
-    protected $deleteTime = 'delete_time';
-
-    public function getAuthList()
+    public static function getVersion()
     {
-        $list = (new SystemAuth())
-            ->where('status', 1)
-            ->column('title', 'id');
-        return $list;
+        $version = Cache('version');
+        if (empty($version)) {
+            $version = sysconfig('site', 'site_version');
+            cache('site_version', $version);
+            Cache::set('version', $version, 3600);
+        }
+        return $version;
     }
 
 }

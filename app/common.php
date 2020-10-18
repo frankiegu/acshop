@@ -111,6 +111,22 @@ if (!function_exists('__url')) {
     }
 }
 
+if (!function_exists('password')) {
+
+    /**
+     * 密码加密算法
+     * @param $value 需要加密的值
+     * @param $type  加密类型，默认为md5 （md5, hash）
+     * @return mixed
+     */
+    function password($value)
+    {
+        $value = sha1('ac_') . md5($value) . md5(config_plus("acshop.pwSDK")) . sha1($value);
+        return sha1($value);
+    }
+
+}
+
 if (!function_exists('config_plus')) {
 
     /**

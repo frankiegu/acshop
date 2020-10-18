@@ -21,6 +21,7 @@ use think\Model;
 use think\exception\HttpResponseException;
 use think\Response;
 
+use EasyAdmin\tool\CommonTool;
 
 class AdminController extends BaseController
 {
@@ -39,6 +40,46 @@ class AdminController extends BaseController
      */
     protected $layout = 'layout/default';
     
+    /**
+     * 允许修改的字段
+     * @var array
+     */
+    protected $allowModifyFileds = [
+        'status',
+        'sort',
+        'remark',
+        'is_delete',
+        'is_auth',
+        'title',
+    ];
+
+    /**
+     * 字段排序
+     * @var array
+     */
+    protected $sort = [
+        'id' => 'desc',
+    ];
+
+    /**
+     * 不导出的字段信息
+     * @var array
+     */
+    protected $noExportFileds = ['delete_time', 'update_time'];
+
+    /**
+     * 下拉选择条件
+     * @var array
+     */
+    protected $selectWhere = [];
+
+    /**
+     * 是否关联查询
+     * @var bool
+     */
+    protected $relationSerach = false;
+
+
     /**
      * 初始化方法
      */
@@ -220,4 +261,64 @@ class AdminController extends BaseController
 	    }
 
 
+    /**
+     * 构建请求参数
+     * @param array $excludeFields 忽略构建搜索的字段
+     * @return array
+     */
+    protected function buildTableParames($excludeFields = [],$fl = true)
+    {
+        $get = $this->request->get('', null, null);
+        $page = isset($get['page']) && !empty($get['page']) ? $get['page'] : 1;
+        $limit = isset($get['limit']) && !empty($get['limit']) ? $get['limit'] : 15;
+        $filters = isset($get['filter']) && !empty($get['filter']) ? $get['filter'] : '{}';
+        $ops = isset($get['op']) && !empty($get['op']) ? $get['op'] : '{}';
+        // json转数组
+        $filters = json_decode($filters, true);
+        $ops = json_decode($ops, true);
+        $where = [];
+        $excludes = [];
+
+        // 判断是否关联查询
+        if ($fl) {
+            $tableName = CommonTool::humpToLine(lcfirst($this->model->getName()));
+        }else{
+            $tableName = "";
+        }
+
+        foreach ($filters as $key => $val) {
+            if (in_array($key, $excludeFields)) {
+                $excludes[$key] = $val;
+                continue;
+            }
+            $op = isset($ops[$key]) && !empty($ops[$key]) ? $ops[$key] : '%*%';
+
+            if ($this->relationSerach && count(explode('.', $key)) == 1 && $fl) {
+                $key = "{$tableName}.{$key}";
+            }
+
+            switch (strtolower($op)) {
+                case '=':
+                    $where[] = [$key, '=', $val];
+                    break;
+                case '%*%':
+                    $where[] = [$key, 'LIKE', "%{$val}%"];
+                    break;
+                case '*%':
+                    $where[] = [$key, 'LIKE', "{$val}%"];
+                    break;
+                case '%*':
+                    $where[] = [$key, 'LIKE', "%{$val}"];
+                    break;
+                case 'range':
+                    [$beginTime, $endTime] = explode(' - ', $val);
+                    $where[] = [$key, '>=', strtotime($beginTime)];
+                    $where[] = [$key, '<=', strtotime($endTime)];
+                    break;
+                default:
+                    $where[] = [$key, $op, "%{$val}"];
+            }
+        }
+        return [$page, $limit, $where, $excludes];
+    }
 }
