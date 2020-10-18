@@ -46,6 +46,25 @@ class Index extends AdminController
         print_r(Plugins::GetPluginList());
         //print_r(Config::get('plugins_menu'));
 
+        return $this->fetch();
+        //return "-结束";
+    }
+    /**
+     * @NodeAnotation(title="首页")
+     */
+    public function home()
+     {
+        // 触发UserLogin事件 用于执行用户登录后的一系列操作
+        event('AdminHome');
+
+        // 获取插件配置
+        //$plugin = new Plugins::GetPluginList();
+        print_r("=============<br>");
+        print_r("插件列表<br>");
+        print_r("=============<br>");
+        print_r(Plugins::GetPluginList());
+        //print_r(Config::get('plugins_menu'));
+
         return "-结束";
     }
 }

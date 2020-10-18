@@ -18,7 +18,7 @@ use think\facade\Event;
 
 
 return function () {
-   print_r("插件B启动<br>");
+   //print_r("插件B启动<br>");
 	// 设置插件
 	Config::set(['b' => [
         'name' => '插件B模块',
@@ -33,7 +33,7 @@ return function () {
         ]], 'plugins_menu');
 
 	// 监听事件
-	Event::subscribe(AcShop\plugin\b\listener\index::class);
+	//Event::subscribe(AcShop\plugin\b\listener\index::class);
 	
 
 

@@ -21,10 +21,10 @@ use think\Model;
 use think\exception\HttpResponseException;
 use think\Response;
 
-use app\common\Plugins;
 
 class AdminController extends BaseController
 {
+    use \app\common\traits\JumpTrait;
 
     /**
      * 当前模型
@@ -34,11 +34,18 @@ class AdminController extends BaseController
     protected $model;
 
     /**
+     * 模板布局, false取消
+     * @var string|bool
+     */
+    protected $layout = 'layout/default';
+    
+    /**
      * 初始化方法
      */
     protected function initialize()
     {
         parent::initialize();
+        $this->layout && $this->app->view->engine()->layout($this->layout);
         
     }
 
