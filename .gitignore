@@ -1,5 +1,6 @@
 /.idea
 /.vscode
+/runtime
 /资料
 *.log
 .env
