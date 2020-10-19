@@ -8,6 +8,10 @@ AcShop（全名 Acgice商城）基于TP6框架 的一套 微信社交电商分�
 [![star](https://gitee.com/orzice/acshop/badge/star.svg?theme=dark)](https://gitee.com/orzice/acshop/stargazers)
 [![fork](https://gitee.com/orzice/acshop/badge/fork.svg?theme=dark)](https://gitee.com/orzice/acshop/members)
 
+Gitee : https://gitee.com/orzice/acshop
+
+Github : https://github.com/orzice/acgice
+
 
 
 ## [运行环境要求]
