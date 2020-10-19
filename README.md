@@ -1,5 +1,7 @@
 # AcShop（AcgIce商城）
-### 项目开发中
+AcShop（全名 Acgice商城）基于TP6框架 的一套 微信社交电商分销系统。
+
+
 
 [![AcShop](https://img.shields.io/badge/license-AGPL--3.0-blue)](https://oauth.acgice.com)
 [![AcShop](https://img.shields.io/badge/AcShop-开发中-brightgreen)](https://oauth.acgice.com)
@@ -58,8 +60,8 @@
 
 ## [特性]
 
-### 定时任务
+### 代码只做核心功能！
 
 
 
-### 任务队列
+### 插件高扩展性，拥有更强的能力！

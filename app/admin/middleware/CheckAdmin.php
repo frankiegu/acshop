@@ -28,8 +28,7 @@ class CheckAdmin
 
     public function handle(Request $request, \Closure $next)
     {
-        Sessions(null,array("id"=>1,"expire_time"=>1634546127));
-
+        //Sessions(null,array("id"=>1,"expire_time"=>1634546127));
 
         $adminConfig = config('admin');
        

@@ -28,14 +28,14 @@ if (!function_exists('Sessions')) {
      * @param null $name
      * @return array|mixed
      */
-    function Sessions($name = null,$data = null)
+    function Sessions($name = null,$data = '')
     {
         $src = config_plus("acshop.SessionName");
         if($name){
             $src = $src .".".$name;
         }
 
-        if($data){
+        if($data !== ''){
             return session($src,$data);
         }else{
             return session($src);
