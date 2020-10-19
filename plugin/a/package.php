@@ -15,6 +15,7 @@
 
 use think\facade\Config;
 use think\facade\Event;
+use AcgCron\Cron;
 
 return function () {
    //print_r("插件A启动<br>");
@@ -33,5 +34,14 @@ return function () {
 
 	// 监听事件
 	//Event::subscribe(AcShop\plugin\a\listener\index::class);
-	
+    
+    Event::listen('cron.collectJobs', function($user) {
+        Cron::add('acgice-plugin-a', '* * * * * *', function () {
+            print_r('插件A的定时任务');
+            return;
+        });
+    });
+
+
+
 };

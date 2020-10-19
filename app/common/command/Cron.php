@@ -23,7 +23,7 @@ use think\console\input\Option;
 use think\console\Output;
 
 use think\facade\Event;
-
+use app\common\Plugins;
 
 class Cron extends Command
 {
@@ -42,17 +42,13 @@ class Cron extends Command
 
     protected function execute(Input $input, Output $output)
     {
-        $output->writeln(date('Y-m-d H:i:s')."========定时任务服务启动========" );
-        Event::trigger('cron.collectJobs');
+        $output->writeln("");
+        $output->writeln("---".date('Y-m-d H:i:s')."---");
+        Plugins::init();
+        $output->writeln("定时任务服务启动" );
+        $output->writeln("");
 
-        /*
-         * 定时任务处理
-         *
-         */
-        \AcgCron\Cron::add('Orz-daili-dividend', '* * * * * *', function () {
-           //print_r(23333);
-            return;
-        });
+        Event::trigger('cron.collectJobs');
 
         $report = \AcgCron\Cron::run();
 
@@ -65,15 +61,14 @@ class Cron extends Command
         }
 
         $output->writeln("");
+        $output->writeln("---".date('Y-m-d H:i:s')."---");
         $output->writeln("Run date :" .$report['rundate']);
         $output->writeln("In time :" .$inTime);
         $output->writeln("Run time :" .round($report['runtime'], 4));
         $output->writeln("Errors :" .$report['errors']);
         $output->writeln("Jobs :" .count($report['crons']));
+        $output->writeln("-------------------------");
 
-
-        $output->writeln("");
-        $output->writeln(date('Y-m-d H:i:s')."========定时任务运行完成========" );
     }
 
 }
