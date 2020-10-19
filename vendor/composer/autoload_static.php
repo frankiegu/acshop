@@ -128,6 +128,7 @@ class ComposerStaticInitd61ad5f6781248304efb40bde2b78078
         ),
         'C' => 
         array (
+            'Cron\\' => 5,
             'Complex\\' => 8,
         ),
         'A' => 
@@ -240,6 +241,10 @@ class ComposerStaticInitd61ad5f6781248304efb40bde2b78078
         'Doctrine\\Common\\Annotations\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
+        ),
+        'Cron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
         'Complex\\' => 
         array (

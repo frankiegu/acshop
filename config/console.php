@@ -5,5 +5,7 @@
 return [
     // 指令定义
     'commands' => [
+		'cron' => 'app\common\command\Cron',
+		'node' => 'app\common\command\Node',
     ],
 ];
