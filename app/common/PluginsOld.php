@@ -21,23 +21,35 @@ use think\facade\Config;
 use think\facade\Route;
 use app\common\model\PluginsData;
 
-class Plugins 
+class PluginsOld 
 {
     /**
-     * 初始化方法 【新】使用数据库操作注入
+     * 初始化方法 【旧】
      */
-    static public function init()
+    static public function init_old()
     {
         //==================================
-        //      获取已开启的插件并注入
+        //      插件注入
         //==================================
         $root = root_path();
+        $arr = array();
         $dir = $root.'plugin/';
 
-        $plugins = PluginsData::where("state",1)->select();
-
-        for ($i=0; $i < count($plugins); $i++) { 
-            $file = $dir.$plugins[$i]["dir"]."/package.php";
+        $str = opendir($dir);
+        while( ($filename = readdir($str)) !== false ){
+            if($filename != "." && $filename != ".."){
+                if (is_file($filename)){
+                    $file_array[]=$filename;
+                }else{
+                    $dir_array[]=$filename;
+                }
+            }
+        }
+        closedir($str);
+        //print_r($file_array);
+        //print_r($dir_array);
+        for ($i=0; $i < count($dir_array); $i++) { 
+            $file = $dir.$dir_array[$i]."/package.php";
             if (is_file($file)){
                $hook = include $file;
                $hook();
@@ -45,49 +57,23 @@ class Plugins
         }
     }
     /**
-     * 获取已安装的插件列表信息
+     * 获取插件列表信息【旧】
      */
-    static public function GetPluginList($state = "")
+    static public function  GetPluginList()
     {
-        $plugins = PluginsData::order('state','DESC');
-        if ($state !== "") {
-            $plugins = $plugins->where("state",$state);
-        }
-        $plugins = $plugins->select();
-    	return $plugins;
-    }
-    /**
-     * 获取未安装的插件信息 安装后 package.json包 更名
-     */
-    static public function GetInstallPlugin()
-    {
-        $root = root_path();
-        $install = array();
-        $dir = $root.'plugin/';
-        $str = opendir($dir);
-        while( ($filename = readdir($str)) !== false ){
-            if($filename != "." && $filename != ".."){
-                if (!is_file($filename)){
-                    $dir_array[]=$filename;
-                }
-            }
-        }
-        closedir($str);
-        for ($i=0; $i < count($dir_array); $i++) { 
-            $file = $dir.$dir_array[$i]."/package.json";
-            if (is_file($file)){
-                $handle = fopen($file, 'r');
-                if ($handle) {
-                    $buffer = fread($handle, filesize($file));
-                    fclose($handle);
-                    $json = json_decode($buffer,true);
-                    if ($json) {
-                        $install[] = $json;
-                    }
-                }
-            }
-        }
-        return $install;
+    	$data = array();
+    	$arr = Config::get('plugins_menu');
+    	$arr_name = array_keys($arr);
+    	for ($i=0; $i < count($arr_name); $i++) { 
+    		$data["num"][$i] = $arr[$arr_name[$i]];
+    		if ($data["num"][$i] == false) {
+    			$data["num"][$i] = array("plugins_name" => $arr_name[$i]);
+    		}else{
+    			$data["num"][$i]["plugins_name"] = $arr_name[$i];
+    		}
+    	}
+    	$data["name"] = $arr;
+    	return $data;
     }
 
 }

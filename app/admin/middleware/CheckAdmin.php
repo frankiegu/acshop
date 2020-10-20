@@ -31,7 +31,7 @@ class CheckAdmin
         //Sessions(null,array("id"=>1,"expire_time"=>1634546127));
 
         $adminConfig = config('admin');
-       
+ 
         $adminId = Sessions("id");
         $expireTime = Sessions("expire_time");
         $authService = new AuthService($adminId);
@@ -46,7 +46,7 @@ class CheckAdmin
 
             // 判断是否登录过期
             if ($expireTime !== true && time() > $expireTime) {
-                session('admin', null);
+                Sessions(null, null);
                 $this->error('登录已过期，请重新登录', [], __url('admin/login/index'));
             }
         }
