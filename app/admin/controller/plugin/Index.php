@@ -102,4 +102,20 @@ class Index extends AdminController
         
         $this->success('插件关闭成功！', [], __url('admin/plugin.index/index'));
      }
+    /**
+     * @NodeAnotation(title="卸载插件")
+     */
+    public function del($name=null)
+     {
+        if (!$name) {
+            $this->error('请输入插件名称！', [], __url('admin/plugin.index/index'));
+        }
+        try {
+            Plugins::PluginDel($name);
+        } catch (\Exception $e) {
+            $this->error('插件卸载失败！', [], __url('admin/plugin.index/index')); 
+        }
+        
+        $this->success('插件卸载成功！', [], __url('admin/plugin.index/index'));
+     }
 }

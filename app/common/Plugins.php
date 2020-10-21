@@ -52,10 +52,30 @@ class Plugins
         }
     }
     /**
+     * 卸载插件
+     */
+    static public function PluginDel($name=null)
+    {
+        if (!$name) {return false;}
+        $root = root_path();
+        $sep = self::$sep;
+        $dir = $root.'plugin'.$sep;
+        $file = $dir.$name.$sep."app.json";
+        if (!is_file($file)){
+            return false;
+        }
+        rename($file,$dir.$name.$sep."package.json");
+        PluginsData::where("dir",$name)->delete();
+        self::PluginNodeDel($name);
+        self::PluginMenuDel($name);
+        return true;
+    }
+    /**
      * 安装插件
      */
-    static public function Install($name='')
+    static public function Install($name=null)
     {
+        if (!$name) {return false;}
         //==================================
         //      安装插件
         //==================================
@@ -103,9 +123,7 @@ class Plugins
      */
     static public function PluginNodeDel($name = null)
     {
-        if (!$name) {
-            return false;
-        }
+        if (!$name) {return false;}
         $dir = 'plugins.'.$name.'-';
         SystemNode::where("node",'like', $dir.'%')->delete();
         return true;
@@ -164,9 +182,7 @@ class Plugins
      */
     static public function PluginMenuDel($name = null)
     {
-        if (!$name) {
-            return false;
-        }
+        if (!$name) {return false;}
         $dir = 'plugins.'.$name.'-';
         SystemMenu::where("href",'like', $dir.'%')->delete();
         return true;

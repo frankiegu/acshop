@@ -23,6 +23,5 @@ use app\common\model\TimeModel;
 class PluginsData extends TimeModel
 {
 
-    protected $deleteTime = 'delete_time';
 
 }
