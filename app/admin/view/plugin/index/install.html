@@ -24,7 +24,7 @@
       </td>
     <td>
         <div class="layui-btn-container">
-            <a href="###" class="layui-btn layui-btn-normal">安装插件</a>
+            <a href="{:__url('admin/plugin.index/install',['name'=>$vo.namespace])}" target="_self" onclick="layer.open({type: 2,shadeClose: false,content: '安装中，请稍后'});" class="layui-btn layui-btn-normal">安装插件</a>
         </div>
     </td>
  </tr>

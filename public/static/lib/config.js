@@ -37,6 +37,7 @@ require.config({
         "autocomplete": ["lay-module/autocomplete/autocomplete"],
         "vue": ["vue-2.6.10/vue.min"],
         "ckeditor": ["ckeditor4/ckeditor"],
+        "layer": ["layer-mobile-2.0/layer"],
     }
 });
 

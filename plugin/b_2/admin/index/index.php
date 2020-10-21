@@ -12,20 +12,35 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-19 14:59:21
+// | DateTime：2020-10-19 14:58:56
 // +----------------------------------------------------------------------
-namespace AcShop\plugin\b\api\index;
+namespace AcShop\plugin\b_2\admin\index;
 
+
+use app\common\controller\AdminController;
+use app\common\Plugins;
+
+use EasyAdmin\annotation\ControllerAnnotation;
+use EasyAdmin\annotation\NodeAnotation;
 
 
 /**
-* 
-*/
-class Index 
+ * @ControllerAnnotation(title="管理后台")
+ * Class Node
+ * @package app\admin\controller\system
+ */
+class Index extends AdminController
 {
 	
+    /**
+     * @NodeAnotation(title="首页")
+     */
 	public function index()
 	{
+        print_r("=============<br>");
+        print_r("[管理员界面]B插件列表<br>");
+        print_r("=============<br>");
+        print_r(Plugins::GetPluginList());
 		return 111;
 	}
 

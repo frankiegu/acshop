@@ -16,6 +16,7 @@
     background: #FFF;
 }
 </style>
+<link rel="stylesheet" href="__STATIC__/lib/layer-mobile-2.0/need/layer.css?v={$version}" media="all">
 <div class="layuimini-container">
     <div class="layuimini-main" id="app">
 
@@ -42,20 +43,18 @@
 </div>
 <script type="text/javascript">
 
-require(["jquery", "easy-admin", "vue"], function ($, ea, Vue) {
+require(["jquery", "easy-admin", "vue","layer"], function ($, ea, Vue,layer) {
 
     var form = layui.form;
 
     var app = new Vue({
         el: '#app',
         data: {
-            upload_type: upload_type
         }
     });
 
-    form.on("radio(upload_type)", function (data) {
-        app.upload_type = this.value;
-    });
+  //loading带文字
+  // layer.open({type: 2,shadeClose: false,content: '加载中'});
 
     ea.listen();
     

@@ -27,7 +27,7 @@
       </td>
     <td>
         <div class="layui-btn-container">
-            <a href="###" class="layui-btn layui-btn-normal">启动插件</a>
+            <a href="{:__url('admin/plugin.index/on',['name'=>$vo.namespace])}" target="_self" onclick="layer.open({type: 2,shadeClose: false,content: '启动中，请稍后'});" class="layui-btn layui-btn-normal">启动插件</a>
         </div>
     </td>
  </tr>

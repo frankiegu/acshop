@@ -23,13 +23,13 @@ use AcgCron\Cron;
 return function () {
     //print_r("插件B启动<br>");
 	// 设置插件
-	Config::set(['b' => [
+	Config::set(['b_2' => [
         'name' => '插件B模块',
         'version' => '1.0.0',
         'description' => '测试插件B说明',
         'author' => '',
         'url' => '',
-        'namespace' => 'AcShop\\plugin\\b',
+        'namespace' => 'AcShop\\plugin\\b_2',
         'permit' => 1,//如果不设置则不会做权限检测
         'menu' => 1,//如果不设置则不显示菜单，子菜单也将不显示
         'parents' => [],

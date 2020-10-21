@@ -198,8 +198,8 @@ class AdminController extends BaseController
 	            'wait' => $wait,
 	        ];
 	        if ($type == 'html') {
-	            $response = json($result);
-	            //$response = view(app('config')->get('app.dispatch_error_tmpl'), $result);
+	            //$response = json($result);
+	            $response = view(app('config')->get('app.dispatch_error_tmpl'), $result);
 	        } elseif ($type == 'json') {
 	            $response = json($result);
 	        }

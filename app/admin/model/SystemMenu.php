@@ -20,7 +20,7 @@ use app\common\model\TimeModel;
 class SystemMenu extends TimeModel
 {
 
-    protected $deleteTime = 'delete_time';
+   // protected $deleteTime = 'delete_time';
 
     public function getPidMenuList()
     {

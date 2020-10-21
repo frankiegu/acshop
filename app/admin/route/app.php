@@ -17,7 +17,13 @@
 use think\facade\Route;
 
 /**
- * /admin/plugin.a-index-index-index
+ * /admin/plugins.a-index-index-index
  */
-Route::rule('plugin.<p1>-<p2>-<p3>-<p4>','AcShop\plugin\<p1>\admin\<p2>\<p3>@<p4>');
+Route::rule('plugins.<p1>-<p2>-<p3>-<p4>','AcShop\plugin\<p1>\admin\<p2>\<p3>@<p4>');
+
+/**
+ * /admin/plugins.a-index-index/index
+ */
+Route::rule('plugins.<p1>-<p2>-<p3>/<p4>','AcShop\plugin\<p1>\admin\<p2>\<p3>@<p4>');
+
 

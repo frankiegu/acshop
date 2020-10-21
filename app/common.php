@@ -111,6 +111,21 @@ if (!function_exists('__url')) {
         return url($url, $vars, $suffix, $domain)->build();
     }
 }
+if (!function_exists('__aurl')) {
+
+    /**
+     * 构建URL地址
+     * @param string $url
+     * @param array $vars
+     * @param bool $suffix
+     * @param bool $domain
+     * @return string
+     */
+    function __aurl(string $url = '')
+    {
+        return __url('admin/index/index').'#'.__url($url);
+    }
+}
 
 if (!function_exists('password')) {
 
@@ -159,4 +174,23 @@ if (!function_exists('auth')) {
         return $check;
     }
 
+}
+
+
+if (!function_exists('getSubstr')) {
+/*以下是取中间文本的函数 
+getSubstr=调用名称
+$str=预取全文本 
+$leftStr=左边文本
+$rightStr=右边文本
+*/
+function getSubstr($str, $leftStr, $rightStr)
+{
+    $left = strpos($str, $leftStr);
+    //echo '左边:'.$left;
+    $right = strpos($str, $rightStr,$left);
+    //echo '<br>右边:'.$right;
+    if($left < 0 or $right < $left) return '';
+    return substr($str, $left + strlen($leftStr), $right-$left-strlen($leftStr));
+}
 }

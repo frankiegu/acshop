@@ -20,10 +20,21 @@ namespace AcShop\plugin\a\admin\index;
 use app\common\controller\AdminController;
 use app\common\Plugins;
 
+use EasyAdmin\annotation\ControllerAnnotation;
+use EasyAdmin\annotation\NodeAnotation;
 
+
+/**
+ * @ControllerAnnotation(title="管理后台")
+ * Class Node
+ * @package app\admin\controller\system
+ */
 class Index extends AdminController
 {
 	
+    /**
+     * @NodeAnotation(title="首页")
+     */
 	public function index()
 	{
         print_r("=============<br>");

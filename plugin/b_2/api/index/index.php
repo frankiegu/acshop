@@ -12,36 +12,22 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-19 14:59:14
+// | DateTime：2020-10-19 14:59:21
 // +----------------------------------------------------------------------
-
-use think\facade\Config;
-use think\facade\Event;
-use AcgCron\Cron;
-
-return function () {
-   //print_r("插件A启动<br>");
-	// 设置插件
-	Config::set(['a' => [
-        'name' => '插件A模块',
-        'version' => '1.0.0',
-        'description' => '测试插件A说明',
-        'author' => '',
-        'url' => '',
-        'namespace' => 'AcShop\\plugin\\a',
-        'admin' => 'index-index-index',//后台管理页面 留空就是没有
-        ]], 'plugins_menu');
-
-	// 监听事件
-	//Event::subscribe(AcShop\plugin\a\listener\index::class);
-    
-    Event::listen('cron.collectJobs', function($user) {
-        Cron::add('acgice-plugin-a', '* * * * * *', function () {
-            print_r('插件A的定时任务');
-            return;
-        });
-    });
+namespace AcShop\plugin\b_2\api\index;
 
 
 
-};
+/**
+* 
+*/
+class Index 
+{
+	
+	public function index()
+	{
+		return 111;
+	}
+
+
+}

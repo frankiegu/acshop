@@ -67,6 +67,7 @@ class Node extends AdminController
     public function refreshNode($force = 0)
     {
         $nodeList = (new NodeService())->getNodelist();
+        
         empty($nodeList) && $this->error('暂无需要更新的系统节点');
         $model = new SystemNode();
         try {
@@ -80,6 +81,7 @@ class Node extends AdminController
                     ]);
                 }
             }
+
             $existNodeList = $model->field('node,title,type,is_auth')->select();
             foreach ($nodeList as $key => $vo) {
                 foreach ($existNodeList as $v) {
