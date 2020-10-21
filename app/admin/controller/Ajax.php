@@ -38,8 +38,8 @@ class Ajax extends AdminController
         $menuService = new MenuService(Sessions('id'));
         $data = [
             'logoInfo' => [
-                'title' => sysconfig('site', 'logo_title'),
-                'image' => sysconfig('site', 'logo_image'),
+                'title' => 'AcShop',
+                'image' => '/favicon.png',
                 'href'  => __url('index/index'),
             ],
             'homeInfo' => $menuService->getHomeInfo(),
