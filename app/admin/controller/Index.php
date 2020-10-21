@@ -26,7 +26,6 @@ use EasyAdmin\annotation\NodeAnotation;
 
 use app\admin\model\SystemAdmin;
 use app\admin\model\SystemQuick;
-
 /**
  * @ControllerAnnotation(title="系统节点管理")
  * Class Node

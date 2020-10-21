@@ -12,37 +12,40 @@
 // +----------------------------------------------------------------------
 // | Author：Orzice(小涛)  https://gitee.com/orzice
 // +----------------------------------------------------------------------
-// | DateTime：2020-10-19 14:57:48
+// | DateTime：2020-10-21 16:41:50
 // +----------------------------------------------------------------------
+//  php think queue:work
+namespace app\common\job;
 
-namespace app\home\controller;
+use think\queue\Job;
+use think\facade\Log;
 
-use app\common\controller\HomeController;
-use think\facade\Config;
-use app\common\Plugins;
-use EasyAdmin\auth\Node as NodeService;
+class Job1{
+    
+    public function fire(Job $job, $data){
+    
+            //....这里执行具体的任务 
+            
+             if ($job->attempts() > 3) {
+                  //通过这个方法可以检查这个任务已经重试了几次了
+             }
+             Log::info($data);
 
-
-class Index extends HomeController
-{
-    public function index()
-     {
-      //触发
-      //\think\facade\Queue::push('common/Job1','6666');
-
-       event('Home');
-       $nodeList = (new NodeService())->getNodelist();
-       print_r($nodeList);
-       exit;
-
-        // 获取插件配置
-        //$plugin = new Plugins::GetPluginList();
-        print_r("=============<br>");
-        print_r("插件列表<br>");
-        print_r("=============<br>");
-        print_r(Plugins::GetPluginList());
-        //print_r(Config::get('plugins_menu'));
-
-        return "-结束";
+            
+            //如果任务执行成功后 记得删除任务，不然这个任务会重复执行，直到达到最大重试次数后失败后，执行failed方法
+            $job->delete();
+            
+            // 也可以重新发布这个任务
+            //$job->release($delay); //$delay为延迟时间
+          
     }
+    
+    public function failed($data){
+        // ...任务达到最大重试次数后，失败了
+    }
+
 }
+
+
+
+?>

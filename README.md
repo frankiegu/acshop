@@ -38,6 +38,22 @@ Github : https://github.com/orzice/acgice
 
 
 
+### [队列]
+
+```
+php think queue:work --sleep=3 --tries=3
+```
+
+### [计划任务]
+
+```
+php think cron
+```
+
+### 
+
+
+
 ## [企划]（挖坑）
 
 - 云端附件支持（本地，阿里云，七牛云.....）
