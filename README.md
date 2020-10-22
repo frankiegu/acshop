@@ -1,7 +1,9 @@
 # AcShop（AcgIce商城）
-AcShop（全名 Acgice商城）基于TP6框架 的一套 微信社交电商分销系统。
+AcShop（全名 Acgice商城）基于TP6框架 的一套 开源的微信社交电商分销系统。
 
+原有公司项目运营2年，遇到了无数的难题和痛点，此项目专为解决目前公司项目的痛点进行重新开发！并新加了很多特性！
 
+项目于2020-10-13日立项，预计登录平台为：H5 + APP + 小程序（微信 QQ 百度 等..）【开发中】
 
 [![AcShop](https://img.shields.io/badge/license-AGPL--3.0-blue)](https://oauth.acgice.com)
 [![AcShop](https://img.shields.io/badge/AcShop-开发中-brightgreen)](https://oauth.acgice.com)
@@ -19,12 +21,6 @@ Github : https://github.com/orzice/acgice
 > 后端技术栈：PHP7.2 + Redis + Mysql + Nginx 
 >
 > 前端技术栈： Vue.js + uni-app
-
-
-
-全名 Acgice商城 基于TP6框架 的一套 微信社交电商分销系统，
-
-于2020-10-13日立项，预计登录平台为：H5 + APP + 小程序（微信 QQ 百度 等..）
 
 后台管理页部分代码参考 easyadmin
 
@@ -74,7 +70,7 @@ php think cron
 
 - 齐全的支付模块！微信支付，支付宝支付，（H5支付，APP支付，微信内支付，扫码支付）
 
-- 多种支付方式！
+- 多种支付方式！且可以随意切换！
 
   
 
@@ -85,3 +81,11 @@ php think cron
 
 
 ### 插件高扩展性，拥有更强的能力！
+
+
+
+### 多个微信支付通道随意切换！
+
+
+
+### 多个微信一键登录 随意切换！

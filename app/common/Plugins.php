@@ -64,6 +64,14 @@ class Plugins
         if (!is_file($file)){
             return false;
         }
+        $uninstall = $dir.$name.$sep."uninstall.php";
+        if (is_file($uninstall)){
+            $hook = include $uninstall;
+            $state = $hook();
+            if(!$state){
+                return false;
+            }
+        }
         rename($file,$dir.$name.$sep."package.json");
         PluginsData::where("dir",$name)->delete();
         self::PluginNodeDel($name);
@@ -79,7 +87,6 @@ class Plugins
         //==================================
         //      安装插件
         //==================================
-
         $root = root_path();
         $sep = self::$sep;
         $dir = $root.'plugin'.$sep;
@@ -96,6 +103,14 @@ class Plugins
         $json = json_decode($buffer,true);
         if (!$json) {
             return false;
+        }
+        $install = $dir.$name.$sep."install.php";
+        if (is_file($install)){
+            $hook = include $install;
+            $state = $hook();
+            if(!$state){
+                return false;
+            }
         }
         $sql = array(
             'dir' => $name,

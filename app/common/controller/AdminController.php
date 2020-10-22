@@ -145,7 +145,7 @@ class AdminController extends BaseController
 	     * @return void
 	     * @throws HttpResponseException
 	     */
-	    protected function success($msg = '', $data = '', $url = null, $wait = 3, array $header = [])
+	    protected function success($msg = '', $data = '', $url = null, $wait = 2, array $header = [])
 	    {
 	        if (is_null($url) && isset($_SERVER["HTTP_REFERER"])) {
 	            $url = $_SERVER["HTTP_REFERER"];
@@ -181,7 +181,7 @@ class AdminController extends BaseController
 	     * @return void
 	     * @throws HttpResponseException
 	     */
-	    protected function error($msg = '', $data = '', $url = null, $wait = 3, array $header = [])
+	    protected function error($msg = '', $data = '', $url = null, $wait = 2, array $header = [])
 	    {
 	        if (is_null($url)) {
 	            $url = request()->isAjax() ? '' : 'javascript:history.back(-1);';

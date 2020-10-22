@@ -21,21 +21,15 @@ use app\common\controller\AdminController;
 use think\facade\Config;
 use app\common\Plugins;
 
-use EasyAdmin\annotation\ControllerAnnotation;
-use EasyAdmin\annotation\NodeAnotation;
-
 use app\admin\model\SystemAdmin;
 use app\admin\model\SystemQuick;
-/**
- * @ControllerAnnotation(title="系统节点管理")
- * Class Node
- * @package app\admin\controller\system
- */
 
 class Index extends AdminController
 {
     /**
-     * @NodeAnotation(title="首页")
+     * 后台主页
+     * @return string
+     * @throws \Exception
      */
     public function index()
      {
@@ -54,7 +48,9 @@ class Index extends AdminController
         //return "-结束";
     }
     /**
-     * @NodeAnotation(title="首页")
+     * 后台欢迎页
+     * @return string
+     * @throws \Exception
      */
     public function home()
      {

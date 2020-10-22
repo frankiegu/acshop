@@ -111,11 +111,16 @@ class Index extends AdminController
             $this->error('请输入插件名称！', [], __url('admin/plugin.index/index'));
         }
         try {
-            Plugins::PluginDel($name);
+            $a = Plugins::PluginDel($name);
         } catch (\Exception $e) {
             $this->error('插件卸载失败！', [], __url('admin/plugin.index/index')); 
         }
+        if($a){
+            $this->success('插件卸载成功！', [], __url('admin/plugin.index/index'));
+        }else{
+            $this->error('插件卸载失败！', [], __url('admin/plugin.index/index')); 
+        }
         
-        $this->success('插件卸载成功！', [], __url('admin/plugin.index/index'));
+       
      }
 }
