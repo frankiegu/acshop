@@ -16,11 +16,47 @@
 // +----------------------------------------------------------------------
 // 应用公共文件
 
+use think\exception\HttpResponseException;
 use app\common\service\AuthService;
 use think\facade\Cache;
 use think\facade\Config;
 
 
+if (!function_exists('Uploadfile')) {
+    /**
+     *  标记 附件已使用
+     */
+    function Uploadfile($url)
+    {
+        \app\admin\model\SystemUploadfile::where("uid",Sessions('id'))->where("state",0)->where("url",$url)->update(["state" => 1]);
+        return true;
+    }
+}
+if (!function_exists('UploadfileDelete')) {
+    /**
+     *  清除未使用附件  每一次上传 都会监控未使用的图片 进行删除处理
+     */
+    function UploadfileDelete()
+    {
+        $row = \app\admin\model\SystemUploadfile::where('file','<>',"")->where('state',0)->select();
+        for ($i=0; $i < count($row); $i++) { 
+              if ($row[$i]['file'] == '') {
+                continue;
+              }
+            //进行删除文件操作
+             $wjm = root_path() . 'public/' . $row[$i]['file'];
+             $wjm = str_replace(DIRECTORY_SEPARATOR, '/', $wjm);
+             $wjm = str_replace(DIRECTORY_SEPARATOR, '\/', $wjm);
+
+            if(file_exists($wjm)){
+              unlink($wjm);
+            }
+        }
+        //删除数据库记录
+        \app\admin\model\SystemUploadfile::where('file','<>',"")->where('state',0)->delete();
+        return true;
+    }
+}
 if (!function_exists('Sessions')) {
     /**
      * 获取Session配置信息  可以随意修改Session名
@@ -193,4 +229,43 @@ function getSubstr($str, $leftStr, $rightStr)
     if($left < 0 or $right < $left) return '';
     return substr($str, $left + strlen($leftStr), $right-$left-strlen($leftStr));
 }
+}
+
+if (!function_exists('array_format_key')) {
+
+    /**
+     * 二位数组重新组合数据
+     * @param $array
+     * @param $key
+     * @return array
+     */
+    function array_format_key($array, $key)
+    {
+        $newArray = [];
+        foreach ($array as $vo) {
+            $newArray[$vo[$key]] = $vo;
+        }
+        return $newArray;
+    }
+
+}
+/**
+ * 插件请使用这个进行拦截系统操作  0是失败  1是成功！
+ * 
+ * 建议只在必要的时候再使用此函数，不然可能发生无法预料的问题。
+ */
+if (!function_exists('api_return')) {
+
+    function api_return($code = 0,$msg = '', $data = '', $url = null, $wait = 2)
+    {
+        $result = [
+            'code' => $code,
+            'msg'  => $msg,
+            'data' => $data,
+            'url'  => $url,
+            'wait' => $wait,
+        ];
+        $response = json($result);
+        throw new HttpResponseException($response);
+    }
 }

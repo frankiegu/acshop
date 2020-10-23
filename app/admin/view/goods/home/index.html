@@ -1,0 +1,58 @@
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <table id="currentTable" class="layui-table layui-hide"
+               data-auth-add="{:auth('goods.home/add')}"
+               data-auth-edit="{:auth('goods.home/edit')}"
+               data-auth-delete="{:auth('goods.home/delete')}"
+               lay-filter="currentTable">
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+require(["jquery", "easy-admin"], function ($, ea) {
+
+    var init = {
+        table_elem: '#currentTable',
+        table_render_id: 'currentTableRenderId',
+        index_url: 'goods.home/index',
+        add_url: 'goods.home/add',
+        edit_url: 'goods.home/edit',
+        delete_url: 'goods.home/delete',
+        modify_url: 'goods.home/modify',
+        export_url: 'goods.home/export',
+    };
+
+
+// templet: function(d) {
+//     return '<div style="color: #999;">'+d.shop[0].create_time+'</div>';
+// }
+            ea.table.render({
+                init: init,
+                cols: [[
+                    {type: "checkbox"},
+                    {field: 'id', minWidth: 80, title: 'ID'},
+                    {field: 'title', minWidth: 200, title: '标题'},
+                    {field: 'price', minWidth: 80,search: false, title: '价格'},
+                    {field: 'stock', minWidth: 80, search: false,title: '库存'},
+                    {field: 'real_sales', minWidth: 80,search: false, title: '出售数量'},
+                    {field: 'type', title: '是否实体商品', minWidth: 85, search: 'select', selectList: {1: '实体商品', 2: '虚拟商品'}, templet: ea.table.switch},
+                    {field: 'status', title: '上架', minWidth: 85, search: 'select', selectList: {0: '下架', 1: '上架'}, templet: ea.table.switch},
+                    {field: 'create_time', minWidth: 80, title: '创建时间', search: 'range'},
+                    {
+                        width: 400,
+                        title: '操作',
+                        templet: ea.table.tool,
+                        operat: [
+                            'edit',
+                            'delete'
+                        ]
+                    }
+                ]],
+            });
+
+            ea.listen();
+    
+});
+</script>

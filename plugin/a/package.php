@@ -35,12 +35,20 @@ return function () {
 	// 监听事件
 	//Event::subscribe(AcShop\plugin\a\listener\index::class);
     
-    Event::listen('cron.collectJobs', function($user) {
-        Cron::add('acgice-plugin-a', '* * * * * *', function () {
-            print_r('插件A的定时任务');
-            return;
-        });
-    });
+    // 例子：定时任务
+    // Event::listen('cron.collectJobs', function($user) {
+    //     Cron::add('acgice-plugin-a', '* * * * * *', function () {
+    //         print_r('插件A的定时任务');
+    //         return;
+    //     });
+    // });
+
+    // 例子：禁止某个用户加入黑名单
+    // Event::listen('MemberModify', function($arr) {
+    //     if($arr['id'] == 1 && $arr['value'] == 0){
+    //         api_return(0,"用户 ".$arr['id']." 不允许修改");
+    //     }
+    // });
 
 
 

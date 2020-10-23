@@ -48,6 +48,7 @@ class AdminController extends BaseController
      */
     protected $allowModifyFileds = [
         'status',
+        'state',
         'sort',
         'remark',
         'is_delete',
@@ -127,7 +128,7 @@ class AdminController extends BaseController
         try {
             parent::validate($data, $validate, $message, $batch);
         } catch (\Exception $e) {
-            //$this->error($e->getMessage());
+            $this->error($e->getMessage());
 			return $e->getMessage();
         }
         return true;
