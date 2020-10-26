@@ -1,0 +1,183 @@
+<style type="text/css">
+.plugin .bold{
+    font-weight: 700;
+}
+.plugin .sml{
+    font-size: 9px !important;
+    -webkit-text-size-adjust: none;
+}
+.plugin p {
+    margin-top: 10px;
+}
+.plugin div.memo {
+    margin: 5px;
+    padding: 5px;
+    border: 1px dotted #DEEFFB;
+    background: #FFF;
+}
+tip{
+    color: #737373;
+}
+</style>
+<link rel="stylesheet" href="__STATIC__/lib/layer-mobile-2.0/need/layer.css?v={$version}" media="all">
+<div class="layuimini-container">
+
+<form id="app-form" class="layui-form layuimini-form">
+
+    <div class="layuimini-main" id="app">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+            <ul class="layui-tab-title">
+                <li class="layui-this">配送逻辑</li>
+                <li>添加逻辑</li>
+
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show layui-table-body layui-table-main" >
+                    {include file="goods/dispatch/data_1" /}
+                </div>
+                <div class="layui-tab-item">
+                    {include file="goods/dispatch/data_2" /}
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+
+require(["jquery", "easy-admin", "vue","layer"], function ($, ea, Vue,layer) {
+
+    var form = layui.form;
+
+    var app = new Vue({
+        el: '#app',
+        data: {}
+    });
+
+  //loading带文字
+  // layer.open({type: 2,shadeClose: false,content: '加载中'});
+
+            if ($("input[name=province]").attr("disabled") !== "disabled") {
+                // $("select[name=province_id]").html("<option value='"+$("input[name=province_id]").val()+"'>"+$("input[name=province]").val()+"</option>"); 
+                // $("select[name=area_id]").html("<option value='"+$("input[name=area_id]").val()+"'>"+$("input[name=area]").val()+"</option>"); 
+                // $("select[name=city_id]").html("<option value='"+$("input[name=city_id]").val()+"'>"+$("input[name=city]").val()+"</option>"); 
+
+
+            // }else{
+                ea.request.get(
+                    {
+                        url: "/api/area",
+                        data: {
+                            pid: 0,
+                            deep: 0
+                        }
+                    }, function (res) {
+                        var optionstring = "";
+                        $.each(res.data,function(key,value){  //循环遍历后台传过来的json数据
+                            optionstring += "<option value=\"" + value.id + "\" >" + value.ext_name + "</option>";
+                        });
+                        $("select[name=province_id]").html("<option value=''>请选择省</option> "+optionstring); //获得要赋值的select的id，进行赋值
+                        this.layui.form.render();
+
+                        if($("select[name=province_id]").attr("data-value") != "") {
+                            $(".layui-anim dd[lay-value="+$("select[name=province_id]").attr("data-value")+"]").trigger("click");//主动触发
+                        }
+                    }
+                );
+            }
+            
+            layui.form.on('select(province)', function(data) {
+                $("input[name=province]").val($("option[value="+data.value+"]").text());
+                ea.request.get(
+                    {
+                        url: "/api/area",
+                        data: {
+                            pid: data.value,
+                            deep: 1
+                        }
+                    }, function (res) {
+                        var optionstring = "";
+                        $("select[name=area_id]").empty();
+                        $.each(res.data,function(key,value){  //循环遍历后台传过来的json数据
+                            optionstring += "<option value=\"" + value.id + "\" >" + value.ext_name + "</option>";
+                        });
+                        $("select[name=city_id]").html("<option value=''>请选择市</option> "+optionstring); //获得要赋值的select的id，进行赋值
+                        this.layui.form.render();
+                        
+                        if($("select[name=city_id]").attr("data-value") != "") {
+                            $(".layui-anim dd[lay-value="+$("select[name=city_id]").attr("data-value")+"]").trigger("click");//主动触发
+                        }
+                        
+                    }
+                );
+            });
+            
+            layui.form.on('select(city)', function(data) {
+                $("input[name=city]").val($("option[value="+data.value+"]").text());
+                ea.request.get(
+                    {
+                        url: "/api/area",
+                        data: {
+                            pid: data.value,
+                            deep: 2
+                        }
+                    }, function (res) {
+                        var optionstring = "";
+                        $.each(res.data,function(key,value){  //循环遍历后台传过来的json数据
+                            optionstring += "<option value=\"" + value.id + "\" >" + value.ext_name + "</option>";
+                        });
+                        $("select[name=area_id]").html("<option value=''>请选择县/区</option> "+optionstring); //获得要赋值的select的id，进行赋值
+                        this.layui.form.render();
+                        
+                        
+                        if($("select[name=area_id]").attr("data-value") != "") {
+                            $(".layui-anim dd[lay-value="+$("select[name=area_id]").attr("data-value")+"]").trigger("click");//主动触发
+                        }
+                    }
+                );
+            });
+
+            layui.form.on('select(area)', function(data) {
+
+                $("input[name=area]").val($("option[value="+data.value+"]").text());
+                ea.request.get(
+                    {
+                        url: "/api/area",
+                        data: {
+                            pid: data.value,
+                            deep: 3
+                        }
+                    }, function (res) {
+                        var optionstring = "";
+                        $.each(res.data,function(key,value){  //循环遍历后台传过来的json数据
+                            optionstring += "<option value=\"" + value.id + "\" >" + value.ext_name + "</option>";
+                        });
+                        $("select[name=street_id]").html("<option value=''>请选择街道</option> "+optionstring); //获得要赋值的select的id，进行赋值
+                        this.layui.form.render();
+                        
+                        
+                        if($("select[name=street_id]").attr("data-value") != "") {
+                            $(".layui-anim dd[lay-value="+$("select[name=street_id]").attr("data-value")+"]").trigger("click");//主动触发
+                        }
+                    }
+                );
+
+            });
+
+            layui.form.on('select(street)', function(data) {
+                $("input[name=street]").val($("option[value="+data.value+"]").text());
+            });
+
+            
+
+    ea.listen();
+    
+});
+</script>

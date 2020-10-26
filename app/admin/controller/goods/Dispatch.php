@@ -1,18 +1,13 @@
 <?php
+
 // +----------------------------------------------------------------------
-// | AcShop (Acgice商城)
+// | EasyAdmin
 // +----------------------------------------------------------------------
-// | 团队官网: https://oauth.acgice.com
+// | PHP交流群: 763822524
 // +----------------------------------------------------------------------
-// | 联系我们: https://oauth.acgice.com/sdk/contact.html
+// | 开源协议  https://mit-license.org 
 // +----------------------------------------------------------------------
-// | gitee开源项目：https://gitee.com/orzice/acshop
-// +----------------------------------------------------------------------
-// | github开源项目：https://github.com/orzice/acshop
-// +----------------------------------------------------------------------
-// | Author：Orzice(小涛)  https://gitee.com/orzice
-// +----------------------------------------------------------------------
-// | DateTime：2020-10-26 17:26:14
+// | github开源项目：https://github.com/zhongshaofa/EasyAdmin
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller\goods;
@@ -20,18 +15,18 @@ namespace app\admin\controller\goods;
 
 use think\App;
 use think\facade\Config;
-use app\common\model\Goods;
+use app\common\model\Dispatch as Dispatchs;
 use app\common\controller\AdminController;
 
 use EasyAdmin\annotation\ControllerAnnotation;
 use EasyAdmin\annotation\NodeAnotation;
 
 /**
- * Class Home
+ * Class Dispatch
  * @package app\admin\controller\goods
- * @ControllerAnnotation(title="商品管理")
+ * @ControllerAnnotation(title="配送管理")
  */
-class Home extends AdminController
+class Dispatch extends AdminController
 {
 
     use \app\admin\traits\Curd;
@@ -43,7 +38,7 @@ class Home extends AdminController
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->model = new Goods();
+        $this->model = new Dispatchs();
     }
 
     /**
@@ -76,19 +71,14 @@ class Home extends AdminController
     }
 
     /**
-     * @NodeAnotation(title="添加")
+     * @NodeAnotation(title="配送逻辑")
      */
-    public function add()
+    public function data()
     {
-        event('GoodsAdd');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
             $rule = [];
             $this->validate($post, $rule);
-            $post['goods']['thumb'] = $post['thumb'];
-            $post['goods']['thumb_url'] = $post['thumb_url'];
-            $post['goods']['describe'] = $post['describe'];
-            event('GoodsAddPost',$post);
             try {
                 $save = $this->model->save($post['goods']);
             } catch (\Exception $e) {
@@ -96,9 +86,7 @@ class Home extends AdminController
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
-        $goodsadd = Config::get('goodsadd');
 
-        $this->assign('goodsadd',$goodsadd);
         return $this->fetch();
     }
 }

@@ -12,6 +12,8 @@ return [
     'view_dir_name' => 'view',
     // 模板后缀
     'view_suffix'   => 'html',
+    // 预先加载的标签库
+    'taglib_pre_load'     =>    'app\common\taglib\Plugins', 
     // 模板文件名分隔符
     'view_depr'     => DIRECTORY_SEPARATOR,
     // 模板引擎普通标签开始标记

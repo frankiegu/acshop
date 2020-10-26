@@ -819,6 +819,9 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
             return mobile_flag;
         },
         open: function (title, url, width, height, isResize) {
+            // console.log(666);
+            // console.log(width);
+            // console.log(height);
             isResize = isResize === undefined ? true : isResize;
             var index = layer.open({
                 title: title,

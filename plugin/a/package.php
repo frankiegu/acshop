@@ -18,6 +18,7 @@
 use think\facade\Config;
 use think\facade\Event;
 use AcgCron\Cron;
+use think\facade\View;
 
 return function () {
    //print_r("插件A启动<br>");
@@ -35,6 +36,17 @@ return function () {
 	// 监听事件
 	//Event::subscribe(AcShop\plugin\a\listener\index::class);
     
+    Event::listen('GoodsAdd', function() {
+        Config::set([count(Config::get('goodsadd')) => [
+            'name' => '插件A模块',
+            'src' => 'a/view/admin/goods_add',
+            ]], 'goodsadd');
+    });
+    Event::listen('GoodsAddPost', function($post) {
+       //print_r($post);
+       //exit;
+    });
+
     // 例子：定时任务
     // Event::listen('cron.collectJobs', function($user) {
     //     Cron::add('acgice-plugin-a', '* * * * * *', function () {

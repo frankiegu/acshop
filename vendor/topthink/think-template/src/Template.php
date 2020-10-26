@@ -490,6 +490,9 @@ class Template
 
         // 还原被替换的Literal标签
         $this->parseLiteral($content, true);
+        
+        // print_r($content);
+        // exit;
     }
 
     /**
@@ -549,8 +552,10 @@ class Template
     private function parseInclude(string &$content): void
     {
         $regex = $this->getRegex('include');
+      
         $func  = function ($template) use (&$func, &$regex, &$content) {
             if (preg_match_all($regex, $template, $matches, PREG_SET_ORDER)) {
+
                 foreach ($matches as $match) {
                     $array = $this->parseAttr($match[0]);
                     $file  = $array['file'];
@@ -1190,7 +1195,7 @@ class Template
      * @param  string $templateName 模板文件名
      * @return string
      */
-    private function parseTemplateName(string $templateName): string
+    private function parseTemplateName(string $templateName,$plus=false): string
     {
         $array    = explode(',', $templateName);
         $parseStr = '';
@@ -1205,7 +1210,11 @@ class Template
                 $templateName = $this->get(substr($templateName, 1));
             }
 
-            $template = $this->parseTemplateFile($templateName);
+            if($plus){
+                $template = $templateName;
+            }else{
+                $template = $this->parseTemplateFile($templateName);
+            }
 
             if ($template) {
                 // 获取模板文件内容
