@@ -1,9 +1,9 @@
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">排序</label>
+            <label class="layui-form-label required">优先权</label>
             <div class="layui-input-block">
-                <input type="text" name="data[display_order]" class="layui-input" lay-verify="required" placeholder="" value="">
-                <tip>值越大，优先权越高</tip>
+                <input type="text" name="data[display_order]" class="layui-input" lay-verify="required" placeholder="" value="50">
+                <tip>值越大，优先权越高，如果相同则按照添加顺序</tip>
             </div>
         </div>
 
@@ -47,32 +47,33 @@
 
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">首件价格</label>
-            <div class="layui-input-block">
-                <input type="text" name="data[first_piece_price]" class="layui-input" lay-verify="required" placeholder="" value="">
-                <tip>用户购买第一件的配送费价格</tip>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label required">续件价格</label>
-            <div class="layui-input-block">
-                <input type="text" name="data[another_piece_price]" class="layui-input" lay-verify="required" placeholder="" value="">
-                <tip>用户多次购买的配送价格</tip>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label required">首件个数</label>
+            <label class="layui-form-label required">首件(个)</label>
             <div class="layui-input-block">
                 <input type="text" name="data[first_piece]" class="layui-input" lay-verify="required" placeholder="" value="">
                 <tip>多少件之内是首件价格</tip>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label required">续件个数</label>
+            <label class="layui-form-label required">运费(元)</label>
+            <div class="layui-input-block">
+                <input type="text" name="data[first_piece_price]" class="layui-input" lay-verify="required" placeholder="" value="">
+                <tip>用户购买第一件的配送费价格</tip>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">续件(个)</label>
             <div class="layui-input-block">
                 <input type="text" name="data[another_piece]" class="layui-input" lay-verify="required" placeholder="" value="">
                 <tip>每几次购买增加一次配送费</tip>
             </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">续费(元)</label>
+            <div class="layui-input-block">
+                <input type="text" name="data[another_piece_price]" class="layui-input" lay-verify="required" placeholder="" value="">
+                <tip>用户多次购买的配送价格</tip>
+            </div>
+            <tip>根据件数来计算运费，当物品不足《首件数量》时，按照《首件费用》计算，超过部分按照《续件数量》和《续件费用》乘积来计算</tip>       
         </div>
 
 
