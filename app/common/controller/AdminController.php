@@ -54,6 +54,16 @@ class AdminController extends BaseController
         'is_delete',
         'is_auth',
         'title',
+        
+        'type',
+        'stock',
+        'price',
+
+        'display_order',
+        'first_piece',
+        'first_piece_price',
+        'another_piece',
+        'another_piece_price',
     ];
 
     /**

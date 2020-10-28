@@ -63,20 +63,22 @@ require(["jquery", "easy-admin", "vue",'miniTab'], function ($,ea, Vue,miniTab) 
         table_render_id: 'currentTableRenderId',
         index_url: 'goods.dispatch/data?id={$row.id}',
         edit_url: 'goods.dispatch/dataedit',
+        modify_url: 'goods.dispatch/datamodify',
         delete_url: 'goods.dispatch/datadelete',
     };
 
             ea.table.render({
                 init: init,
+                toolbar: ['refresh'],
                 cols: [[
                     {field: 'id', minWidth: 80, title: '索引'},
-                    {field: 'display_order', minWidth: 80, title: '优先权'},
+                    {field: 'display_order', minWidth: 80, title: '优先权', edit: 'text'},
                     {field: 'areas_txt', minWidth: 200, title: '地区'},
                     {field: 'state', minWidth: 200,search: false, title: '0白名单 1黑名单', selectList: {0: '允许发货', 1: '禁止发货'}},
-                    {field: 'first_piece', minWidth: 80, title: '首件(个)'},
-                    {field: 'first_piece_price', minWidth: 80, title: '运费(元)'},
-                    {field: 'another_piece', minWidth: 80, title: '续件(个)'},
-                    {field: 'another_piece_price', minWidth: 80, title: '续费(元)'},
+                    {field: 'first_piece', minWidth: 80, title: '首件(个)', edit: 'text'},
+                    {field: 'first_piece_price', minWidth: 80, title: '运费(元)', edit: 'text', templet: ea.table.price},
+                    {field: 'another_piece', minWidth: 80, title: '续件(个)', edit: 'text'},
+                    {field: 'another_piece_price', minWidth: 80, title: '续费(元)', edit: 'text', templet: ea.table.price},
                     {
                         width: 200,
                         title: '操作',

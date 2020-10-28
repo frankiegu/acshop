@@ -1,31 +1,68 @@
+<style type="text/css">
+.plugin .bold{
+    font-weight: 700;
+}
+.plugin .sml{
+    font-size: 9px !important;
+    -webkit-text-size-adjust: none;
+}
+.plugin p {
+    margin-top: 10px;
+}
+.plugin div.memo {
+    margin: 5px;
+    padding: 5px;
+    border: 1px dotted #DEEFFB;
+    background: #FFF;
+}
+.poster{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.poster li{
+    display: inline-block;
+    width: 45%;
+    margin: 1%;
+}
+tip{
+    color: #737373;
+}
+</style>
+<link rel="stylesheet" href="__STATIC__/lib/layer-mobile-2.0/need/layer.css?v={$version}" media="all">
 <div class="layuimini-container">
-    <form id="app-form" class="layui-form layuimini-form">
 
-        <div class="layui-form-item">
-            <label class="layui-form-label required">UID</label>
-            <div class="layui-input-block">
-                <input type="text"class="layui-input" readonly value="{$row.id|default=''}">
-                <tip></tip>
+<form id="app-form" class="layui-form layuimini-form">
+
+    <div class="layuimini-main" id="app">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+            <ul class="layui-tab-title">
+                <li class="layui-this">基本信息</li>
+                <li>介绍/配送</li>
+                <li>商品属性</li>
+                {foreach $goodsadd as $key=>$vo } 
+                <li>{$vo.name}<span class="layui-badge">插件</span></li>
+                {/foreach}
+
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show layui-table-body layui-table-main" >
+                    {include file="goods/home/edit_1" /}
+                </div>
+                <div class="layui-tab-item">
+                    {include file="goods/home/edit_2" /}
+                </div>
+                <div class="layui-tab-item">
+                    {include file="goods/home/edit_3" /}
+                </div>
+                {foreach $goodsadd as $key=>$vo } 
+                <div class="layui-tab-item">
+                    {plugins:include file="$vo['src']" /}
+                </div>
+                {/foreach}
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label required">手机号</label>
-            <div class="layui-input-block">
-                <input type="text"  class="layui-input" readonly value="{$row.mobile|default=''}">
-                <tip></tip>
-            </div>
-        </div>
-
-
-
-
-
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">备注信息</label>
-            <div class="layui-input-block">
-                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息">{$row.remark|default=''}</textarea>
-            </div>
-        </div>
+    </div>
 
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">
@@ -35,9 +72,37 @@
 
     </form>
 </div>
-
 <script type="text/javascript">
-require(["jquery", "easy-admin"], function ($, ea) {
-      ea.listen();
+
+require(["jquery", "easy-admin", "vue","layer"], function ($, ea, Vue,layer) {
+
+    var form = layui.form;
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            poster:[
+                {foreach $row.descriptions as $key=>$vo } 
+                    {key:'{$vo.title}',val:'{$vo.value}'},
+                {/foreach}
+            ]
+        },
+        methods:{
+            setInfo(){
+                this.poster.push({key:'',val:''})
+            },
+            delInfo(index){
+                console.log(index)
+                this.poster.splice(index,1)
+                console.log(this.poster)
+            }
+        }
+    });
+
+  //loading带文字
+  // layer.open({type: 2,shadeClose: false,content: '加载中'});
+
+    ea.listen();
+    
 });
 </script>

@@ -15,6 +15,16 @@
     border: 1px dotted #DEEFFB;
     background: #FFF;
 }
+.poster{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.poster li{
+    display: inline-block;
+    width: 45%;
+    margin: 1%;
+}
 tip{
     color: #737373;
 }
@@ -28,8 +38,8 @@ tip{
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
             <ul class="layui-tab-title">
                 <li class="layui-this">基本信息</li>
-                <li>商品介绍</li>
-                <li>配送配置</li>
+                <li>介绍/配送</li>
+                <li>商品属性</li>
                 {foreach $goodsadd as $key=>$vo } 
                 <li>{$vo.name}<span class="layui-badge">插件</span></li>
                 {/foreach}
@@ -43,7 +53,7 @@ tip{
                     {include file="goods/home/add_2" /}
                 </div>
                 <div class="layui-tab-item">
-                   333
+                    {include file="goods/home/add_3" /}
                 </div>
                 {foreach $goodsadd as $key=>$vo } 
                 <div class="layui-tab-item">
@@ -51,6 +61,8 @@ tip{
                 </div>
                 {/foreach}
             </div>
+
+          
         </div>
     </div>
 
@@ -70,7 +82,20 @@ require(["jquery", "easy-admin", "vue","layer"], function ($, ea, Vue,layer) {
 
     var app = new Vue({
         el: '#app',
-        data: {}
+        data: {
+            poster:[
+            ]
+        },
+        methods:{
+            setInfo(){
+                this.poster.push({key:'',val:''})
+            },
+            delInfo(index){
+                console.log(index)
+                this.poster.splice(index,1)
+                console.log(this.poster)
+            }
+        }
     });
 
   //loading带文字

@@ -46,6 +46,18 @@ return function () {
        //print_r($post);
        //exit;
     });
+    
+    Event::listen('GoodsEdit', function() {
+        View::assign('a',array('title'=>'测试数据'));
+        Config::set([count(Config::get('goodsedit')) => [
+            'name' => '插件A模块',
+            'src' => 'a/view/admin/goods_edit',
+            ]], 'goodsedit');
+    });
+    Event::listen('GoodsEditPost', function($post) {
+       //print_r($post);
+       //exit;
+    });
 
     // 例子：定时任务
     // Event::listen('cron.collectJobs', function($user) {
