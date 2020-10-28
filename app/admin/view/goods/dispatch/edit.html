@@ -36,7 +36,7 @@ tip{
         <div class="layui-form-item">
             <label class="layui-form-label required">模板名称</label>
             <div class="layui-input-block">
-                <input type="text" name="dispatch_name" class="layui-input" lay-verify="required" lay-reqtext="" placeholder="" value="">
+                <input type="text" name="dispatch_name" class="layui-input" lay-verify="required" lay-reqtext="" placeholder="" value="{$row.dispatch_name}">
                 <tip></tip>
             </div>
         </div>
@@ -44,8 +44,8 @@ tip{
         <div class="layui-form-item">
             <label class="layui-form-label required">计费方式</label>
             <div class="layui-input-block">
-                <input type="radio" name="calculate_type" value="1" title="记件" checked="">
-                <input type="radio" name="calculate_type" value="0" title="记重">
+                <input type="radio" name="calculate_type" value="1" title="根据数量计算" {eq name="$row.calculate_type" value="1"}checked=""{/eq}>
+                <input type="radio" name="calculate_type" value="0" title="根据重量计算" {eq name="$row.calculate_type" value="0"}checked=""{/eq}>
                 <tip></tip>
             </div>
         </div>

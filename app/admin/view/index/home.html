@@ -163,19 +163,31 @@
                     <div class="layui-card-body layui-text">
                         <table class="layui-table">
                             <colgroup>
-                                <col width="100">
+                                <col width="180">
                                 <col>
                             </colgroup>
                             <tbody>
                             <tr>
                                 <td>框架名称</td>
                                 <td>
-                                    AcShop
+                                    AcShop {$version}
                                 </td>
                             </tr>
                             <tr>
-                                <td>当前版本</td>
+                                <td>AcShop 版本</td>
                                 <td>v{$version}</td>
+                            </tr>
+                            <tr>
+                                <td>服务器系统及 PHP</td>
+                                <td>{$serverinfo}</td>
+                            </tr>
+                            <tr>
+                                <td>服务器软件</td>
+                                <td>{$serversoft}</td>
+                            </tr>
+                            <tr>
+                                <td>服务器 MySQL 版本</td>
+                                <td>{$dbversion}</td>
                             </tr>
                             <tr>
                                 <td>介绍</td>

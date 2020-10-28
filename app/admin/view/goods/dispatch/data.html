@@ -49,7 +49,7 @@ tip{
 </div>
 <script type="text/javascript">
 
-require(["jquery", "easy-admin", "vue","layer",'miniTab'], function ($, ea, Vue,layer,miniTab) {
+require(["jquery", "easy-admin", "vue",'miniTab'], function ($,ea, Vue,miniTab) {
 
     var form = layui.form;
 
@@ -69,7 +69,7 @@ require(["jquery", "easy-admin", "vue","layer",'miniTab'], function ($, ea, Vue,
             ea.table.render({
                 init: init,
                 cols: [[
-                    {type: "checkbox"},
+                    {field: 'id', minWidth: 80, title: '索引'},
                     {field: 'display_order', minWidth: 80, title: '优先权'},
                     {field: 'areas_txt', minWidth: 200, title: '地区'},
                     {field: 'state', minWidth: 200,search: false, title: '0白名单 1黑名单', selectList: {0: '允许发货', 1: '禁止发货'}},
@@ -78,7 +78,7 @@ require(["jquery", "easy-admin", "vue","layer",'miniTab'], function ($, ea, Vue,
                     {field: 'another_piece', minWidth: 80, title: '续件(个)'},
                     {field: 'another_piece_price', minWidth: 80, title: '续费(元)'},
                     {
-                        width: 400,
+                        width: 200,
                         title: '操作',
                         templet: ea.table.tool,
                         operat: [
@@ -89,8 +89,8 @@ require(["jquery", "easy-admin", "vue","layer",'miniTab'], function ($, ea, Vue,
                 ]],
             });
 
-    miniTab.listen();
     ea.listen();
+    miniTab.listen();
     
 });
 </script>

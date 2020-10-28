@@ -36,13 +36,7 @@ class Index extends AdminController
         // 触发UserLogin事件 用于执行用户登录后的一系列操作
         event('AdminHome');
 
-        // 获取插件配置
-        //$plugin = new Plugins::GetPluginList();
-        // print_r("=============<br>");
-        // print_r("插件列表<br>");
-        // print_r("=============<br>");
-        // print_r(Plugins::GetPluginList());
-        //print_r(Config::get('plugins_menu'));
+
 
         return $this->fetch();
         //return "-结束";
@@ -57,14 +51,16 @@ class Index extends AdminController
         // 触发UserLogin事件 用于执行用户登录后的一系列操作
         event('AdminHome');
 
-        // 获取插件配置
-        // //$plugin = new Plugins::GetPluginList();
-        // print_r("=============<br>");
-        // print_r("插件列表<br>");
-        // print_r("=============<br>");
-        // print_r(Plugins::GetPluginList());
-        //print_r(Config::get('plugins_menu'));
+        $serverinfo = PHP_OS.' / PHP v'.PHP_VERSION;
+        $serverinfo .= @ini_get('safe_mode') ? ' Safe Mode' : NULL;
+        $serversoft = $_SERVER['SERVER_SOFTWARE'];
 
+        $mysqlinfo = \think\facade\Db::query("select VERSION()");
+        $dbversion = $mysqlinfo[0]['VERSION()'];
+
+        $this->assign('serverinfo', $serverinfo);
+        $this->assign('serversoft', $serversoft);
+        $this->assign('dbversion', $dbversion);
         return $this->fetch();
     }
 

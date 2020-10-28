@@ -499,7 +499,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         }
 
                         // 部分字段开启排序
-                        var sortDefaultFields = ['id', 'sort'];
+                        var sortDefaultFields = ['id', 'sort', 'display_order'];
                         if (val.sort === undefined && sortDefaultFields.indexOf(val.field) >= 0) {
                             cols[i][index]['sort'] = true;
                         }
