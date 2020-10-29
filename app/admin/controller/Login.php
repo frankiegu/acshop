@@ -69,7 +69,7 @@ class Login extends AdminController
             $admin->save();
             $admin = $admin->toArray();
             unset($admin['password']);
-            $admin['expire_time'] = $post['keep_login'] == 1 ? true : time() + 7200;
+            $admin['expire_time'] = $post['keep_login'] == 1 ? true : time() + 14400;
             Sessions(null,$admin);
             $this->success('登录成功');
         }

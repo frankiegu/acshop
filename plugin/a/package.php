@@ -47,16 +47,29 @@ return function () {
        //exit;
     });
     
-    Event::listen('GoodsEdit', function() {
+    Event::listen('GoodsEdit', function($id) {
         View::assign('a',array('title'=>'测试数据'));
         Config::set([count(Config::get('goodsedit')) => [
-            'name' => '插件A模块',
+            'name' => '插件A模块['.$id,
             'src' => 'a/view/admin/goods_edit',
             ]], 'goodsedit');
     });
     Event::listen('GoodsEditPost', function($post) {
        //print_r($post);
        //exit;
+    });
+
+    Event::listen('MemberAddStart', function() {
+        Config::set([count(Config::get('memberadd')) => [
+            'name' => '插件A模块',
+            'src' => 'a/view/admin/goods_add',
+            ]], 'memberadd');
+    });
+    Event::listen('MemberEditStart', function($id) {
+        Config::set([count(Config::get('memberedit')) => [
+            'name' => '插件A模块['.$id,
+            'src' => 'a/view/admin/goods_add',
+            ]], 'memberedit');
     });
 
     // 例子：定时任务

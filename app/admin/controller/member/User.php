@@ -1,19 +1,25 @@
 <?php
-
 // +----------------------------------------------------------------------
-// | EasyAdmin
+// | AcShop (Acgice商城)
 // +----------------------------------------------------------------------
-// | PHP交流群: 763822524
+// | 团队官网: https://oauth.acgice.com
 // +----------------------------------------------------------------------
-// | 开源协议  https://mit-license.org 
+// | 联系我们: https://oauth.acgice.com/sdk/contact.html
 // +----------------------------------------------------------------------
-// | github开源项目：https://github.com/zhongshaofa/EasyAdmin
+// | gitee开源项目：https://gitee.com/orzice/acshop
+// +----------------------------------------------------------------------
+// | github开源项目：https://github.com/orzice/acshop
+// +----------------------------------------------------------------------
+// | Author：Orzice(小涛)  https://gitee.com/orzice
+// +----------------------------------------------------------------------
+// | DateTime：2020-10-29 10:41:02
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller\member;
 
 
 use think\App;
+use think\facade\Config;
 use app\common\model\Member;
 use app\common\controller\AdminController;
 
@@ -74,6 +80,7 @@ class User extends AdminController
      */
     public function add()
     {
+        event('MemberAddStart');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
             $rule = [
@@ -99,6 +106,38 @@ class User extends AdminController
 
             $save ? $this->success('新增成功') : $this->error('新增失败');
         }
+
+        $plugin = Config::get('memberadd');
+        $this->assign('plugin',$plugin);
+        return $this->fetch();
+    }
+    /**
+     * @NodeAnotation(title="编辑账号")
+     */
+    public function edit($id)
+    {
+        $row = $this->model->find($id);
+        $row->isEmpty() && $this->error('数据不存在');
+        event('MemberEditStart',$id);
+
+        if ($this->request->isAjax()) {
+            $post = $this->request->post();
+            $rule = [];
+            $this->validate($post, $rule);
+            event('MemberEdit',$post);
+            try {
+                $save = $row->save($post);
+            } catch (\Exception $e) {
+                $this->error('保存失败');
+            }
+            if($save){
+               event('MemberEditEnd',$post);
+            }
+            $save ? $this->success('保存成功') : $this->error('保存失败');
+        }
+        $plugin = Config::get('memberedit');
+        $this->assign('plugin',$plugin);
+        $this->assign('row', $row);
         return $this->fetch();
     }
     /**

@@ -148,9 +148,9 @@ class Home extends AdminController
      */
     public function edit($id)
     {
-        event('GoodsEdit');
         $row = $this->model->find($id);
         $row->isEmpty() && $this->error('数据不存在');
+        event('GoodsEdit',$id);
 
         if ($this->request->isAjax()) {
             $post = $this->request->post();
