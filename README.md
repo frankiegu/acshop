@@ -15,6 +15,8 @@ Gitee : https://gitee.com/orzice/acshop
 
 Github : https://github.com/orzice/acgice
 
+## [通知] 因项目繁忙，无空余时间，暂且搁置，12月1日 继续开发
+
 
 
 ## [进度]
